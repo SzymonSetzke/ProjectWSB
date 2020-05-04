@@ -10,10 +10,13 @@ public class Main {
         for (int i = 0; i < 20; i++) {
             dog.Walk();
         }
-        dog.feed();
-        dog.feed();
         Car dreamcar = new Car("VW", "Passat", 1998);
-        me.car = dreamcar;
-        me.setSalary(1.0);
+        me.setSalary(2000.0);
+        dreamcar.value = 2000.0;
+        me.setCar(dreamcar);
+        dreamcar.value = 20000.0;
+        me.setCar(dreamcar);
+        dreamcar.value = 100000.0;
+        me.setCar(dreamcar);
     }
 }

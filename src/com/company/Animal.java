@@ -38,7 +38,6 @@ public class Animal {
             System.out.println(name + " can't eat. He is dead.");
         }
     }
-
     void Walk() {
         if (weight > 0) {
             weight--;
