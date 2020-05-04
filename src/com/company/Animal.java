@@ -52,5 +52,9 @@ public class Animal {
             weight = 0.0;
             System.out.println(name + " can't walk. He is dead.");
         }
+
+    }
+    public String toString() {
+        return name;
     }
 }

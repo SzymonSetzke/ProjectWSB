@@ -1,5 +1,9 @@
 package com.company;
-    public class Human {
+
+import com.company.devices.Car;
+import com.company.devices.Phone;
+
+public class Human {
         String firstName;
         String lastName;
         private Double salary;
@@ -28,7 +32,14 @@ package com.company;
             } else {
                 System.out.println(this.firstName + " " + this.lastName + " doesn't have enough money. Go study or find better job.");
             }
-        }
+            }
+
+
         Animal pet;
         private Car car;
+
+        Phone phone;
+    public String toString() {
+        return firstName + " " + lastName;
+    }
     }
