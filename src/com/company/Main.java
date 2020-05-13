@@ -3,7 +3,6 @@ package com.company;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
-
 public class Main {
     public static void main(String[] args) {
         Human me = new Human();
@@ -17,7 +16,7 @@ public class Main {
         }
         Car dreamcar = new Car("VW ", "Passat", 1998);
         Car dreamcar2 = new Car("VW ", "Passat", 1998);
-        Phone iphone = new Phone("Iphone", "Xs");
+        Phone iphone = new Phone("Iphone", "Xs", 2018);
         me.setSalary(2000.0);
         dreamcar.value = 2000.0;
         me.setCar(dreamcar);
@@ -31,5 +30,8 @@ public class Main {
         System.out.println(iphone);
         System.out.println(dreamcar);
         System.out.println(dreamcar2);
+
+        iphone.turnOn();
+        dreamcar.turnOn();
     }
 }
