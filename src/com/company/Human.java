@@ -3,11 +3,21 @@ package com.company;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
-public class Human {
-        String firstName;
+public class Human extends Animal{
+        public String firstName;
         String lastName;
         private Double salary;
-        public Double getSalary() {
+        public Double cash = 20000.0;
+
+    public Human(String species) {
+        super(species);
+    }
+
+    public Human() {
+        super();
+    }
+
+    public Double getSalary() {
             return salary;
         }
         public void setSalary(Double salary) {
@@ -34,11 +44,17 @@ public class Human {
             }
             }
 
+    public Human getHuman() {
+        return human;
+    }
+    public void setHuman(Human human) {
+        System.out.println("You can't buy a human");
+    }
 
         Animal pet;
-        private Car car;
-
-        Phone phone;
+        public Car car;
+        Human human;
+        public Phone phone;
     public String toString() {
         return firstName + " " + lastName;
     }

@@ -1,6 +1,6 @@
 package com.company;
 
-public class Animal {
+public class Animal implements Salleable {
     public static final Double DEFAULT_DOG_WEIGHT = 10.0;
     public static final Double DEFAULT_MOUSE_WEIGHT = 1.0;
     public static final Double DEFAULT_LION_WEIGHT = 30.0;
@@ -30,6 +30,11 @@ public class Animal {
         this.species = spec;
     }
 
+    public Animal() {
+
+        species = null;
+    }
+
     void feed() {
         if (weight > 0) {
             weight++;
@@ -57,4 +62,24 @@ public class Animal {
     public String toString() {
         return name;
     }
+
+    @Override
+    public void sell(Human seller, Human buyer, Double price) throws Exception {
+        if (buyer.cash >= price) {
+            seller.cash += price;
+            buyer.cash -= price;
+            buyer.pet = this;
+            if (seller.pet == this) {
+                seller.pet = null;
+            }
+            if (this instanceof Human) {
+                throw new Exception("no way");
+            } else
+            System.out.println(buyer.firstName + " bought " + this.toString() + " from " + seller.firstName + " for " + price);
+        } else {
+            throw new Exception("sorry, you have not enough money");
+        }
+    }
 }
+
+
