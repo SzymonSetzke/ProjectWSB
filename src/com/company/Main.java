@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.creatures.FarmAnimal;
+import com.company.creatures.Human;
+import com.company.creatures.Pet;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
@@ -8,12 +11,9 @@ public class Main {
         Human me = new Human();
         me.firstName = "Szymon";
         me.lastName = "Setzke";
-        Animal dog = new Animal("dog");
+        Pet dog = new Pet ("dog");
         dog.name = "Dino";
-        dog.feed();
-        for (int i = 0; i < 20; i++) {
-            dog.Walk();
-        }
+
         Human Irek = new Human();
         Irek.firstName = "Ireneusz";
         Irek.lastName = "Nowak";
@@ -34,7 +34,7 @@ public class Main {
 
 
         System.out.println(me);
-        System.out.println(dog);
+        System.out.println(me.pet);
         System.out.println(iphone);
         System.out.println(dreamcar);
         System.out.println(dreamcar2);
@@ -42,14 +42,18 @@ public class Main {
         iphone.turnOn();
         dreamcar.turnOn();
 
-        dog.sell(me, Irek, 200.0);
 
         System.out.println(me.cash);
         System.out.println(Irek.cash);
 
-        me.setHuman(Daniel);
         iphone.sell(me, Daniel,100.0);
         dog.sell(me, Daniel, 100.0);
+
+        FarmAnimal cow = new FarmAnimal("cow");
+        cow.beEaten();
+        cow.feed(1.0);
+        me.feed(2.0);
+
         Daniel.sell(me, Irek, 100.0);
     }
 }
