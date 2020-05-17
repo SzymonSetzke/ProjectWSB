@@ -6,6 +6,8 @@ import com.company.creatures.Pet;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
+import java.net.URL;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         Human me = new Human();
@@ -34,7 +36,7 @@ public class Main {
 
 
         System.out.println(me);
-        System.out.println(me.pet);
+        System.out.println(dog);
         System.out.println(iphone);
         System.out.println(dreamcar);
         System.out.println(dreamcar2);
@@ -50,9 +52,17 @@ public class Main {
         dog.sell(me, Daniel, 100.0);
 
         FarmAnimal cow = new FarmAnimal("cow");
-        cow.beEaten();
+       cow.beEaten();
         cow.feed(1.0);
-        me.feed(2.0);
+        me.feed(1.0);
+        dreamcar.refuel();
+
+        String[] apps = {"facebook", "messenger"};
+
+        me.phone.installAnApp("facebook");
+        me.phone.installAnApp("facebook", "2.4.21");
+        me.phone.installAnApp(apps);
+        me.phone.installAnApp(new URL("https", "https://play.google.com/facebook", 443, "facebook"));
 
         Daniel.sell(me, Irek, 100.0);
     }

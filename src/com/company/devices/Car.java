@@ -2,7 +2,7 @@ package com.company.devices;
 
 import com.company.creatures.Human;
 
-public class Car extends Device {
+public class Car extends Device implements Refuel {
     public Double value;
     public Car(String producer, String model, int yearofproduction) {
         super(producer, model, yearofproduction);
@@ -33,4 +33,9 @@ public class Car extends Device {
             throw new Exception("you don't have enough money");
         }
     }
+
+    @Override
+    public void refuel() throws Exception {
+        System.out.println("go to gas station");
     }
+}
