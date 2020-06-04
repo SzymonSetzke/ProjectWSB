@@ -4,8 +4,8 @@ import com.company.creatures.Human;
 
 public class Car extends Device implements Refuel {
     public Double value;
-    public Car(String producer, String model, int yearofproduction) {
-        super(producer, model, yearofproduction);
+    public Car(String producer, String model, int yearOfProduction) {
+        super(producer, model, yearOfProduction);
     }
 
     @Override
@@ -21,18 +21,22 @@ public class Car extends Device implements Refuel {
 
     @Override
     public void sell(Human seller, Human buyer, Double price) throws Exception {
-        if (buyer.cash >= price) {
-            seller.cash += price;
-            buyer.cash -= price;
-            buyer.car = this;
-            if (seller.car == this) {
-                seller.car = null;
-            }
-            System.out.println(buyer.firstName + " bought " + this.toString() + " from " + seller.firstName + " for " + price);
-        } else {
-            throw new Exception("you don't have enough money");
+        if (!seller.hasCar(this)) {
+            throw new Exception("nie masz tego auta!");
         }
+        if (!buyer.hasFreeSpace()) {
+            throw new Exception("za mały garaz!");
+        }
+        if (buyer.getCash() < price) {
+            throw new Exception("za mało pieniedzy!");
+        }
+        seller.removeCar(this);
+        buyer.addCar(this);
+        seller.setCash(seller.getCash() + price);
+        buyer.setCash(buyer.getCash() - price);
+        System.out.println("sprzedane!");
     }
+    
 
     @Override
     public void refuel() throws Exception {

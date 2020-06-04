@@ -1,8 +1,6 @@
 package com.company.creatures;
 
-import com.company.Salleable;
-
-abstract public class Animal implements Salleable, Feedable {
+abstract public class Animal implements Feedable {
     public static final Double DEFAULT_DOG_WEIGHT = 10.0;
     public static final Double DEFAULT_MOUSE_WEIGHT = 1.0;
     public static final Double DEFAULT_LION_WEIGHT = 30.0;

@@ -3,20 +3,48 @@ package com.company.creatures;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 
+
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Human extends Animal {
     public String firstName;
     public String lastName;
-    private Double salary;
+    private Double salary = 1000.0;
     public Double cash = 20000.0;
-
-    public Human(String species) {
-        super(species);
+    private static final Integer DEFAULT_GARAGE_SIZE = 2;
+    private final Car[] garage;
+    public Animal pet;
+    public Phone phone;
+    public String toString() {
+        return firstName + " " + lastName;
     }
 
     public Human() {
-        super("czlowiek", 80.0);
+
+        super("homo sapiens");
+        this.weight = 75.0;
+        this.garage = new Car[DEFAULT_GARAGE_SIZE];
+    }
+    public Human(Integer garageSize) {
+        super("czlowiek");
+        this.weight = 75.0;
+        this.garage = new Car[garageSize];
+    }
+    public Double getCash() {
+        return cash;
     }
 
+    public void setCash(Double cash) throws Exception {
+        if (cash >= 0) {
+            this.cash = cash;
+        } else {
+            throw new Exception("heheszke");
+        }
+    }
+    public Car[] getGarage() {
+        return this.garage;
+    }
     public Double getSalary() {
         return salary;
     }
@@ -29,37 +57,75 @@ public class Human extends Animal {
             this.salary = salary;
         }
     }
-    public Car getCar() {
-        return car;
+    public Car getCar(Integer id) {
+        return garage[id];
     }
-    public void setCar(Car car) {
-        if (car.value <= salary) {
-            System.out.println(this.firstName + " " + this.lastName + " bought " + car.model + " for cash.");
-            this.car = car;
-        } else if (car.value <= salary * 12) {
-            System.out.println(this.firstName + " " + this.lastName + " bought " + car.model + " on credit.");
-            this.car = car;
-        } else {
-            System.out.println(this.firstName + " " + this.lastName + " doesn't have enough money. Go study or find better job.");
+
+    public void setCar(Car car, Integer id) {
+        this.garage[id] = car;
+    }
+
+    //public void feed() {
+       // System.out.println("thanks");
+    //}
+    //public void feed(Double foodWeight) {
+    //    this.weight += foodWeight;
+    //    if (foodWeight > 1.0) {
+    //        System.out.println("too much food");
+    //    } else {
+   //         System.out.println("need more food");
+    //    }
+   // }
+    public double valueOfCars() {
+        Double sum = 0.0;
+        for (Car car : garage) {
+            if (car != null) {
+                sum += car.value;
+            }
+        }
+        return sum;
+    }
+
+    public void sortGarage(Comparator comparator) {
+        Arrays.sort(this.garage, comparator);
+    }
+
+    public boolean hasCar(Car newCar) {
+        for (Car car : garage) {
+            if (car == newCar) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasFreeSpace() {
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void removeCar(Car car) {
+        for (int i = 0; i < this.garage.length; i++) {
+            if (this.garage[i] == car) {
+                this.garage[i] = null;
+            }
         }
     }
 
-    public void feed() {
-        System.out.println("thanks");
-    }
-    public void feed(Double foodWeight) {
-        this.weight += foodWeight;
-        if (foodWeight > 1.0) {
-            System.out.println("too much food");
+    public void addCar(Car newCar) throws Exception {
+        if (this.hasFreeSpace()) {
+            for (int i = 0; i < this.garage.length; i++) {
+                if (this.garage[i] == null) {
+                    this.garage[i] = newCar;
+                    break;
+                }
+            }
         } else {
-            System.out.println("need more food");
+            throw new Exception("nie ma miejsca!");
         }
-    }
-
-    public Animal pet;
-    public Car car;
-    public Phone phone;
-    public String toString() {
-        return firstName + " " + lastName;
     }
 }

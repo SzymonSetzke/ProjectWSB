@@ -59,8 +59,4 @@ public class Phone extends Device {
         System.out.println("app installed " + url.getFile());
     }
 
-    }
-
-
-
-
+}
