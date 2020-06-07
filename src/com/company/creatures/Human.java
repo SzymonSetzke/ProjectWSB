@@ -65,6 +65,7 @@ public class Human extends Animal {
         this.garage[id] = car;
     }
 
+
     //public void feed() {
        // System.out.println("thanks");
     //}

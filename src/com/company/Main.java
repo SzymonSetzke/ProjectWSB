@@ -7,11 +7,7 @@ import com.company.devices.Car;
 import com.company.devices.Phone;
 import com.company.devices.YearComparator;
 
-import java.net.URL;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -87,6 +83,7 @@ public class Main {
         System.out.println(Irek.cash);
         System.out.println(me.cash);
         System.out.println(me.valueOfCars());
+
         try {
             dreamcar.sell(me, Irek, 2000.0);
         } catch (Exception e) {
@@ -98,7 +95,26 @@ public class Main {
         System.out.println(Irek.cash);
         System.out.println(me.cash);
         System.out.println(me.valueOfCars());
-
-
+        dreamcar.ListOfTransactions();
+        boolean check1 = dreamcar.isThereWasTransaction(Irek, me);
+        com.company.Transactions transaction1 = new com.company.Transactions (Irek, Daniel, 5600.0,  new Date());
+        dreamcar.transactions.add(transaction1);
+        com.company.Transactions transaction2 = new com.company.Transactions (me, Irek, 4500.0,  new Date());
+        dreamcar2.transactions.add(transaction2);
+        boolean check2 = dreamcar.isThereWasTransaction(Irek, Daniel);
+        boolean check3 = dreamcar2.isThereWasTransaction(me, Irek);
+        System.out.println("check: "+check1+" "+check2+" "+check3);
+        dreamcar.numberOfTransactions();
+        dreamcar2.numberOfTransactions();
+        dreamcar.wasOwner(me);
+        dreamcar.wasOwner(Daniel);
+        dreamcar.ListOfTransactions();
+        try {
+            dreamcar.sell(Irek, me, 2000.0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        dreamcar.ListOfTransactions();
+        dreamcar.last();
     }
 }
