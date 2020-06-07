@@ -8,11 +8,12 @@ import java.util.Date;
 
 
 public class Car extends Device implements Refuel {
-    public Double value;
+
     public ArrayList<Transactions> transactions = new ArrayList<Transactions>();
     public ArrayList owners = new ArrayList();
-    public Car(String producer, String model, int yearOfProduction) {
-        super(producer, model, yearOfProduction);
+    public Car(String producer, String model, int yearOfProduction, Double value) {
+        super(producer, model, yearOfProduction, value);
+
     }
 
     @Override
@@ -44,6 +45,11 @@ public class Car extends Device implements Refuel {
         buyer.addCar(this);
         owners.add(buyer);
         System.out.println("Sprzedane!");
+    }
+
+    @Override
+    public int compareTo(Phone o) {
+        return 0;
     }
 
     public void wasOwner(Human human) {

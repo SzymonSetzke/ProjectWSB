@@ -3,10 +3,12 @@ package com.company;
 import com.company.creatures.FarmAnimal;
 import com.company.creatures.Human;
 import com.company.creatures.Pet;
+import com.company.devices.Application;
 import com.company.devices.Car;
 import com.company.devices.Phone;
 import com.company.devices.YearComparator;
 
+import java.net.MalformedURLException;
 import java.util.*;
 
 public class Main {
@@ -24,16 +26,15 @@ public class Main {
         Daniel.firstName = "Daniel";
         Daniel.lastName = "Kowalski";
         Daniel.setSalary(1000.0);
-        Car dreamcar = new Car("VW ", "Passat", 1998);
+        Car dreamcar = new Car("VW ", "Passat", 1998, 5000.0);
         dreamcar.value = 10000.0;
-        Car dreamcar2 = new Car("VW ", "Passat", 1998);
+        Car dreamcar2 = new Car("VW ", "Passat", 1998, 4500.0);
         dreamcar.value = 11500.0;
-        Phone iphone = new Phone("Iphone", "Xs", 2018);
+        Phone iphone = new Phone("Iphone", "Xs", 2018, 1000.0, me);
+        me.phone = iphone;
         me.setSalary(2000.0);
-        me.setCar(new Car("BMW","M3", 2010),0);
-        me.getCar(0).value = 25000.0;
-        Daniel.setCar(new Car("AUDI","A4",2000),0);
-        Daniel.getCar(0).value = 5000.0;
+        me.setCar(new Car("BMW","M3", 2010, 25000.0),0);
+        Daniel.setCar(new Car("AUDI","A4",2000, 5000.0),0);
         me.setCar(dreamcar, 1);
        // dreamcar.value = 2000.0;
        // me.setCar(dreamcar);
@@ -56,7 +57,7 @@ public class Main {
         System.out.println(me.cash);
         System.out.println(Irek.cash);
 
-        iphone.sell(me, Daniel,100.0);
+        //iphone.sell(me, Daniel,100.0);
         dog.sell(me, Daniel, 100.0);
 
         FarmAnimal cow = new FarmAnimal("cow");
@@ -65,13 +66,14 @@ public class Main {
         me.feed(1.0);
         dreamcar.refuel();
 
-        String[] apps = {"facebook", "messenger"};
+      //  String[] apps = {"Facebook", "Skype", "Instagram"};
+       // try {
+       //     me.phone.installAnApp(apps);
+       //     me.phone.installAnApp("Spotify", "latest");
 
-        // me.phone.installAnApp("facebook");
-        // me.phone.installAnApp("facebook", "2.4.21");
-        // me.phone.installAnApp(apps);
-        // me.phone.installAnApp(new URL("https", "https://play.google.com/facebook", 443, "facebook"));
-
+      //  } catch (MalformedURLException e) {
+      //     e.printStackTrace();
+      //  }
         //Daniel.sell(me, Irek, 100.0);
 
         System.out.println(Arrays.toString(me.getGarage()));
@@ -116,5 +118,22 @@ public class Main {
         }
         dreamcar.ListOfTransactions();
         dreamcar.last();
+
+        Application app1 = new Application("Skype", "10", 10.0);
+        Application app2 = new Application("Spotify", "2.1", 0.0);
+        me.phone.installAnApp(new Application("Facebook", "latest", 5.0));
+        me.phone.installAnApp(new Application("Allegro", "latest", 0.0));
+        me.phone.installAnApp(new Application("MojeWSB", "5", 100.0));
+        me.phone.installAnApp(app1);
+        me.phone.installAnApp(app2);
+        me.phone.checkIfAppIsInstalled(app1);
+        me.phone.checkIfAppIsInstalled(me.phone.getApp("Facebook"));
+        System.out.println(me.phone.myApps);
+        me.phone.allFreeApps();
+        System.out.println(me.phone.sumValueOfApps());
+
+        me.phone.sortValuesOfApps();
+        me.phone.sortAlphabeticalApps();
+
     }
 }
